@@ -1,0 +1,83 @@
+"""exception handling"""
+try:
+    a=10
+    b=0
+    c=a/b
+    print("the ans of a divide by b",c)
+except:
+    print("cant divide with zero")    
+    
+"ques2"    
+"value error"
+try:
+    a = int(input("Enter value of a:")) 
+    b = int(input("Enter value of b:")) 
+    c = a/b 
+    print(c)
+except ValueError:
+    print("value is wrong")
+except ZeroDivisionError:
+    print("cant divide by zero")
+    
+"ques 3"
+"multiple exceptions with single except clause"
+
+try: 
+   a = int(input("Enter value of a:")) 
+   b = int(input("Enter value of b:")) 
+   c = a / b 
+   print("The answer of a divide by b:", c)
+except(ValueError,ZeroDivisionError):
+    print("enter valid value")
+
+
+"ques 4"
+"using try with finally"
+"write a block of code that must be executed wether try block raises an error or not"
+"1. always executed after the try and any except block"
+
+try:
+    a = int(input("Enter value of a:")) 
+    b = int(input("Enter value of b:")) 
+    c = a / b 
+    print("The answer of a divide by b:", c)
+
+except ZeroDivisionError:
+    print("cant with zero")  
+finally:
+    print("finally")                        
+
+
+"ques 5 using with else clause"
+"this code executes when exception did not occur"
+try:
+    a = int(input("Enter value of a:")) 
+    b = int(input("Enter value of b:")) 
+    c = a / b 
+    print("The answer of a divide by b:", c)
+except ZeroDivisionError:
+    print("zero")
+else:
+    print("we are in else block")
+    
+"ques 6 raising an exception"
+def simple_interest(amount, year, rate): 
+try: 
+    if rate > 100: 
+        raise ValueError(rate) 
+    interest = (amount * year * rate) / 100
+    print('The Simple Interest is', interest) 
+    return interest 
+except ValueError: 
+     print('interest ', rate )
+
+amount= int(input("Enter value :")) 
+year=int(input("Enter value :"))   
+rate=int(input("Enter value ")) 
+  
+print("Case 1") 
+simple_interest(800, 6, 8) 
+
+print("Case 2") 
+simple_interest(800, 6, 800)
+
