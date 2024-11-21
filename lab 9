@@ -1,0 +1,204 @@
+"implement the bubble sort using class and object in python"
+class BubbleSort:
+    def __init__(self, data):
+        self.data = data
+
+    def sort(self):
+        n = len(self.data)
+        for i in range(n):
+            for j in range(0, n-i-1):
+                if self.data[j] > self.data[j+1]:
+                    self.data[j], self.data[j+1] = self.data[j+1], self.data[j]
+
+    def get_sorted_data(self):
+        return self.data
+
+# Example usage
+data = [64, 34, 25, 12, 22, 11, 90]
+bubble_sort = BubbleSort(data)
+bubble_sort.sort()
+print("Sorted array is:", bubble_sort.get_sorted_data())
+
+"implement the insertion sort  using class and object in python"
+class InsertionSort:
+    def __init__(self, data):
+        self.data = data
+
+    def sort(self):
+        for i in range(1, len(self.data)):
+            key = self.data[i]
+            j = i - 1
+            while j >= 0 and key < self.data[j]:
+                self.data[j + 1] = self.data[j]
+                j -= 1
+            self.data[j + 1] = key
+
+    def get_sorted_data(self):
+        return self.data
+
+# Example usage
+data = [64, 34, 25, 12, 22, 11, 90]
+insertion_sort = InsertionSort(data)
+insertion_sort.sort()
+print("Sorted array is:", insertion_sort.get_sorted_data())
+
+"implement the selection sort  using class and object in python"
+class SelectionSort:
+    def __init__(self, data):
+        self.data = data
+
+    def sort(self):
+        n = len(self.data)
+        for i in range(n):
+            min_idx = i
+            for j in range(i+1, n):
+                if self.data[j] < self.data[min_idx]:
+                    min_idx = j
+            self.data[i], self.data[min_idx] = self.data[min_idx], self.data[i]
+
+    def get_sorted_data(self):
+        return self.data
+
+# Example usage
+data = [64, 34, 25, 12, 22, 11, 90]
+selection_sort = SelectionSort(data)
+selection_sort.sort()
+print("Sorted array is:", selection_sort.get_sorted_data())
+
+"implement the merge sort  using class and object in python"
+class MergeSort:
+    def __init__(self, data):
+        self.data = data
+
+    def sort(self):
+        self.data = self.merge_sort(self.data)
+
+    def merge_sort(self, array):
+        if len(array) <= 1:
+            return array
+        mid = len(array) // 2
+        left_half = self.merge_sort(array[:mid])
+        right_half = self.merge_sort(array[mid:])
+        return self.merge(left_half, right_half)
+
+    def merge(self, left, right):
+        sorted_array = []
+        while left and right:
+            if left[0] < right[0]:
+                sorted_array.append(left.pop(0))
+            else:
+                sorted_array.append(right.pop(0))
+        sorted_array.extend(left if left else right)
+        return sorted_array
+
+    def get_sorted_data(self):
+        return self.data
+
+# Example usage
+data = [64, 34, 25, 12, 22, 11, 90]
+merge_sort = MergeSort(data)
+merge_sort.sort()
+print("Sorted array is:", merge_sort.get_sorted_data())
+
+"implement the quick sort  using class and object in python"
+"implement the linear search algo   using class and object in python"
+class LinearSearch:
+    def __init__(self, data):
+        self.data = data
+
+    def search(self, target):
+        for index, value in enumerate(self.data):
+            if value == target:
+                return index
+        return -1
+
+    def get_data(self):
+        return self.data
+
+# Example usage
+data = [64, 34, 25, 12, 22, 11, 90]
+linear_search = LinearSearch(data)
+target = 22
+result = linear_search.search(target)
+if result != -1:
+    print(f"Element {target} found at index {result}")
+else:
+    print(f"Element {target} not found in the list")
+
+"implement the binary search using class and object in python"
+class BinarySearch:
+    def __init__(self, data):
+        self.data = sorted(data)  # Ensure the data is sorted
+
+    def search(self, target):
+        left, right = 0, len(self.data) - 1
+        while left <= right:
+            mid = (left + right) // 2
+            if self.data[mid] == target:
+                return mid
+            elif self.data[mid] < target:
+                left = mid + 1
+            else:
+                right = mid - 1
+        return -1
+
+    def get_data(self):
+        return self.data
+
+# Example usage
+data = [64, 34, 25, 12, 22, 11, 90]
+binary_search = BinarySearch(data)
+target = 22
+result = binary_search.search(target)
+if result != -1:
+    print(f"Element {target} found at index {result}")
+else:
+    print(f"Element {target} not found in the list")
+
+"Tree"
+"implement the binary tree using python" class Node:
+    def __init__(self, key):
+        self.left = None
+        self.right = None
+        self.val = key
+
+class BinaryTree:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, key):
+        if self.root is None:
+            self.root = Node(key)
+        else:
+            self._insert(self.root, key)
+
+    def _insert(self, root, key):
+        if key < root.val:
+            if root.left is None:
+                root.left = Node(key)
+            else:
+                self._insert(root.left, key)
+        else:
+            if root.right is None:
+                root.right = Node(key)
+            else:
+                self._insert(root.right, key)
+
+    def inorder_traversal(self, root):
+        if root:
+            self.inorder_traversal(root.left)
+            print(root.val, end=' ')
+            self.inorder_traversal(root.right)
+
+# Example usage
+tree = BinaryTree()
+tree.insert(50)
+tree.insert(30)
+tree.insert(20)
+tree.insert(40)
+tree.insert(70)
+tree.insert(60)
+tree.insert(80)
+
+print("Inorder traversal of the binary tree:")
+tree.inorder_traversal(tree.root)
